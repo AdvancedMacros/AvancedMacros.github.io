@@ -11,6 +11,7 @@
     - link: /docs/docs-setup/
     - link: /guides/toggle-script/
     - link: /guides/object-oriented-programming/
+    - link: /guides/kwargs/
 - title: Reference
   docs:
     - link: /docs/reference/events/
