@@ -44,7 +44,9 @@ Any of these are fine:<br>
  - `com.theincgi.PathFinder.Foo`
 
 
-Keep class files in `~/macros/libs/username/` and load them using `require` instead of `run`<br><br>
+Keep class files in `~/macros/libs/username/` and load them using `require` instead of `run`<br>
+If relevant to a project you plan to share then instead add your project root to the require path and keep classes there.
+<br><br>
 While developing, it may be easier to load them with run, but keep in mind that type checking will not work correctly if<br>
 an instance was created with a different copy of a class.<br>
 This is because `isA( class )` doesn't check the class name (string), it checks the class object and it's parents if any for matches.<br>
