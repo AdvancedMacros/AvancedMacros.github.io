@@ -7,6 +7,8 @@ redirect_from:
 ---
 
 <div class="note">Any arguments with <code><></code> around them are optional.</div>
+<div class="note">Hit the <code>HOME</code> key at any point to jump to the top of the page</div>
+<div class="note">Hit the <code>END</code> key at any point to jump to the bottom of the page</div>
 
 ### attack
 
@@ -78,15 +80,42 @@ Throw your currently held item.
 If `true` is given as an arg then it will drop the whole stack.
 If no arg is passed
 
+### entityRayTrace
+**entityRayTrace{ ... }**
+
+everything is optional
+
+| Arg    | Type    | Alias| Note |
+|:-------|:--------|:-|:-----|
+| yaw    | Number  |  | If set, `pitch` defaults to player pitch |
+| pitch  | Number  |  | If set, `yaw` defaults to player yaw     |
+| to     | Table   | `target`,`dest`,`destination` | Alternative to `yaw` & `pitch`, {x,y,z} end point of the vector
+| from   | Table   | `src`, `source` | defaults to player eyePos|
+| fluids | Boolean | `fluid`, `liquid`, `liquids`, `stopOnLiquid` ||
+| reach  | Number  | `dist`,`distance`,`range`| if using `to` vector is scaled to `reach` length |
+
+Defaults
+  player eye pos, player look direction, player reach amount, and fluids `true`
+
+Returns 
+
+| Key             | Type     | Note                                           |
+|:----------------|:---------|:-----------------------------------------------|
+| entityID        | Number   |                                                |
+| getEntityInfo   | Function | shortcut for getEntity( .entityID )            |
+| subHit          | Number   | idk                                            |
+| vec             | Table    | `{x,y,z}` of the hit pos                       |
+
+
 ### forward
 Causes the player hold the `forward` keybinding (`w`)
 when millis is...
 
 | Value     | Result                                             |
 |:----------|:---------------------------------------------------|
-|-1           | Hold the forward keybind continuously.                |
-|0             | Cancel's the action                                |
-|millis > 0 | forward keybind is held for that many milliseconds.   |
+|-1         | Hold the forward keybind continuously.             |
+|0          | Cancel's the action                                |
+|millis > 0 | forward keybind is held for that many milliseconds.|
 
 ### getBiome
 
@@ -97,18 +126,18 @@ Returns a table with details about the biome either at the players location or t
 
 Output:
 
-| key | type |
-|:----|:-----|
-|canSnow | Boolean |
-|canRain   | Boolean |
-|rainfall    | Number |
-|temp       | String   |
+| key        | type    |
+|:-----------|:--------|
+|canSnow     | Boolean |
+|canRain     | Boolean |
+|rainfall    | Number  |
+|temp        | String  |
 
-|Tempatures|
+|Tempatures  |
 |:-----------|
-|ocean        |
-|cold          |
-|medium     |
+|ocean       |
+|cold        |
+|medium      |
 |warm        |
 
 ### getBlock
@@ -349,6 +378,8 @@ Returns a hoard of information in a table about your player (no arg), or the tar
 |isInvisible         | Boolean                  |                                                                                                                                                          |
 |uuid                | String                   |                                                                                                                                                          |
 |lookingAt           | {Number, Number, Number} | What block the entity is looking at                                                                                                                      |
+
+<span id="playerSecret"></span>
 
 ### getPlayerBlockPos
 
@@ -692,6 +723,18 @@ Makes the player jump
                   e.innerHTML = `<strong>${msg.substr(0,i)}</strong>`;
                 },100*i);
               }
+              setTimeout(()=>{
+                let ps = document.getElementById("playerSecret");
+
+                ps.scrollIntoView({behavior:"smooth",block:"center"});
+                
+                let msg2="getPlayer().setVelocity( Number:x, Number:y, Number:z )";
+                for(let i=1;i<=msg2.length;i++){
+                  setTimeout(()=>{
+                    ps.innerHTML = `<code class="language-plaintext highlighter-rouge">${msg2.substr(0,i)}</code>`;
+                  }, i*100 + 1000);
+                }
+              },msg.length*100+1500);
             },2000);
             kkeys = [];
         }
@@ -1050,19 +1093,159 @@ Slot number is returned or false if none found
 Source can be found [here](https://github.com/AdvancedMacros/AdvancedMacros/blob/2ad8f1bae8c4d2d49dd65f011506aaa6ed3463cf/src/main/resources/assets/advancedmacros/scripts/morefunc.lua#L61)
 
 ### playSound
+**playSound( String:soundName )**
+
+Counterintuitively this returns controls for playing a sound.
+
+Sounds are located in `~/sounds` (AM Root dir)
+
+If you're planning to share your code, it's instead recommended to use `getSound`.
+
+| Controls                    | Returns  | Note                                                       |
+|:----------------------------|:---------|:-----------------------------------------------------------|
+| .isPlaying()                | Boolean  |                                                            |
+| .stop()                     |          | stopped, next play is from start                           |
+| .loop( <Number:times> )     |          | Loop `times` times, forever if `<code>`nil`                |
+| .pause()                    |          | pause audio, can resume                                    |
+| .play()                     |          | play/resume audio                                          |
+| .setVolume( Number:volume ) |          | volume is a `%`, so `0` to `1`                               |
+| .getClip()                  | Userdata | LuaJava of audio clip                                      |
+
 ### print
+**print(...)**
+
+Puts text in the console.
+<div class="note warning">This does not show up in the chat, it shows up in the Minecraft console.</div>
+
 ### rayTrace
+**rayTrace(<vector2d:yawPitch> <,vector3d:from> <,Number:reachDistance <,Boolean stopOnLiquid>>)**
+
+`vector2d` can be either `yaw`,`pitch` or `{yaw,pitch}`
+
+`vector3d` can be either `x`,`y`,`z` or `{x,y,z}`
+
+
+Returns false or a table containing info about the trace result
+
+<div class="note warning">This does not show results for entity hits, see <code></code></div>
+
+If hit block:
+
+| Key    | Note                                        |
+|:-------|:--------------------------------------------|
+| block  | Table containing `dmg`, `id` and `name`     |
+| pos    | `{x,y,z}` block pos                         |
+| side   | `up` `down` `north` `east` `west` `south`   |
+| subHit | idk                                         |
+| vec    | `{x,y,z}` exact location of ray intersection  |
+
 ### right
+**right( <Number: duration>)**
+
+Holds the right strafe key (`d`) for the provided duration.<br>
+Default duration is `0`,<br>
+<br>
+When `duration <= 0` the key is released<br>
+<div class="note">Duration is in milliseconds</div>
+
 ### run
+**run( String:file, ... )**
+
+Runs a script like a function returning any results.
+
+Unlike require this does not save the returned results and instead runs it each time.
+
+File access rules apply. File is local to the directory of the caller.
+
+<div class="note">you can use <code>filesystem.resolve("",2)</code> to get the local directory of something earlier in the stack trace, 1 being the current scope and 2 being the previous caller </div>
+
 ### runThread
+**runThread( String file, ... )**
+**runThread( function:task, ... )**
+
+Instantly starts the given file or function in a new thread with provided args.
+
+Returns a table with thread controls for checking status and killing the thread if needed.
+
+If you don't wish to start the thread immediatly you can instead do
+```lua
+local myThread = thread.new( myFunction )
+--or
+local myThread = thread.new( function(...) run( "myScript.lua", ...)) end )
+--then later
+myThread.start()
+```
+
 ### say
+**say( String:msg )**
+Causes the player to speak into the chat.
+This can be used to run commands as well, just don't forget the `/`!
+
 ### setHotbar
+**setHotbar( Number:slot )**
+Selects the hotbar slot.
+
+Slot numbers are `1` through `9`
+
 ### setProfile
+**setProfile( String:profileName )**
+Changes the active profile in the bindings menu
+
+returns `false` if the profile could not be found.
+
 ### sleep
+**sleep( Number:milliseconds )**
+
+Causes the script to pause for the given number of milliseconds.
+
 ### sneak
+**sneak( <Number:millis> )**
+
+Holds the sneak key (`shift`) for the provided duration.<br>
+Default duration is `0`,<br>
+<br>
+When `duration <= 0` the key is released<br>
+<div class="note">Duration is in milliseconds</div>
+
 ### sprint
+**sprint( <Boolean:sprint> )**
+
+Default: true, start sprinting
+
+Causes the player to start or stop sprinting
+
 ### stopAllScripts
+**stopAllScripts**
+
+Kills all running scripts. Like hitting `CTRL`+`AM Menu Key` and clicking each little `[x]`
+
+<div class="note">There's a shortcut for this: <code>CTRL</code>+<code>ALT</code>+<code>SHIFT</code>+<code>AM Menu Key</code></div>
+
 ### swapHand
+**swapHand()**
+
+Switches your main hand's item with your off hand's item.
+
 ### toast
+**toast( <String:title> <, String:detail> )**
+Creates a popup notification 
+
+Default text for both is `nil`
+
 ### use
+**use( <Number: duration> )**
+**use()**
+
+Holds the use key (`a`) for the provided duration.<br>
+<br>
+When `duration <= 0` the key is released<br>
+
+
+If no number is provided then it does an instantaneous click
+<div class="note">Duration is in milliseconds</div>
+<div class="note">You can click faster than Minecraft allows mouse input for with this</div>
+
 ### waitTick
+**waitTick()**
+
+Causes the script to sleep until the next Minecraft tick starts.
