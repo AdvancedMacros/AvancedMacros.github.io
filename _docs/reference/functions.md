@@ -212,11 +212,13 @@ Returns the number of chunk updates as seen in the `F3` debug menu.
 
 ### getEntity
 
-**getEntity( Number:ID )**
+**getEntity( Number:ID <,Boolean coerce> )**
 
 
 Returns a table with information about an entity much like `getPlayer()`.\
 `getEntityList()` can be used to locate an entity's ID number.
+
+If `coerce` is `true` then a `luajava` version of the entity is returned instead.
 
 | Key                | Type                     | Note                                                                                                         |
 |:-------------------|:-------------------------|:-------------------------------------------------------------------------------------------------------------|
