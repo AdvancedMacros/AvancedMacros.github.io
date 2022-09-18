@@ -38,7 +38,7 @@ jobs:
       run: |
         git init
         git config user.name "TheIncgi"
-        git config user.email "30257460+TheIncgi@users.noreply.github.com"
+        git config user.email "TheIncgi@gmail.com"
         git add .
         git commit -m 'Deploy to GitHub Pages'
         git push --force "https://$GH_PAT@github.com/$GITHUB_REPOSITORY.git" master:master
