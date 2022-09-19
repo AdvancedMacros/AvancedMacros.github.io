@@ -1,7 +1,7 @@
 - title: Getting Started
   docs:
     - link: /docs/
-    - link: /docs/step-by-step/01-config/
+    - link: /docs/step-by-step/01-setup/
 - title: Guides
   docs:
     - link: /docs/installation/
