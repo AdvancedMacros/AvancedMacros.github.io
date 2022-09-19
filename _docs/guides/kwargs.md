@@ -3,6 +3,7 @@ title: Named Args
 permalink: "/guides/kwargs/"
 redirect_from:
   - /guides/named-args/
+  - /kwargs/
 ---
 ## The Template
 ```lua
@@ -18,7 +19,10 @@ local function pathFind(...)
   local to = args.to
   --...
 end
+```
 
+Longer example
+```lua
 local function needsEntity(...)
   local args = kwargs({
     { entity="table",nil,{"entityID","number"}},
