@@ -1,0 +1,18 @@
+{
+  "version": "https://jsonfeed.org/version/1",
+  "title": "Advanced Macros",
+  "description": "A mod to automate the player completely with both simple and complex macros scripts.",
+  "home_page_url": "https://advancedmacros.github.io/",
+  "feed_url": "https://advancedmacros.github.io/feed.json",
+  "favicon": "https://advancedmacros.github.io/favicon-32x32.png",
+  
+   "author": {
+      "name": "Advanced Macros"
+      
+  },
+  
+  "items": [
+    
+    
+  ]
+}

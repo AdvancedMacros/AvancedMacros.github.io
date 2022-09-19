@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <link href="https://advancedmacros.github.io/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="https://advancedmacros.github.io/" rel="alternate" type="text/html" hreflang="en" />
+  <updated>2022-09-19T23:02:40+00:00</updated>
+  <id>https://advancedmacros.github.io/feed.xml</id>
+
+  
+  
+
+    <title></title>
+
+  
+    <subtitle>A mod to automate the player completely with both simple and complex macros scripts.</subtitle>
+  
+
+  
+  
+  
+</feed>
