@@ -42,3 +42,10 @@ Edit `_data/docs_nav.yml` and add the `permalink` in the group. You can even mak
 
 ## Do I have to restart the server to see changes?
 Nope.
+
+## Tutorial label
+Make sure it matches in all steps
+
+I'd make it so as long as they're in the same folder it all counts as one, but `liquid`'s filters are a pain,<br>
+who doesn't offer `()` to alter order of operations for filters? `liquid`
+

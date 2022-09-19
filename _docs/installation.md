@@ -6,7 +6,7 @@ permalink: /docs/installation/
 
 Advanced Macros is installed using the standard procedure for installing mods with Forge. Below is a step-by-step tutorial.
 
-1. Install a version of Forge compatible with the mod (1.12-1.14 as of July, 21st 2020). Tutorials on this can be found elsewhere.
+1. Install a version of Forge compatible with the mod (`1.12`-`1.14`-`1.15.2` as of September, 19st 2022). Tutorials on this can be found elsewhere.
 
 2. Download the latest of Advanced Macros, corresponding to the Forge version you want to run, from [Curseforge](https://www.curseforge.com/minecraft/mc-mods/advanced-macros).
 

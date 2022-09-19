@@ -19,8 +19,10 @@
     - link: /docs/reference/hud2d/
     - link: /docs/reference/hud3d/
     - link: /docs/reference/useful-addons/
+    - link: /docs/reference/am-utils/
 - title: Tutorials
   docs:
     - link: /tutorials/inventory/
+    - link: /tutorials/gui/01-getting-started/
     - link: /tutorials/blah/
     - link: /tutorials/blah-2/
