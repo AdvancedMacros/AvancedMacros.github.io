@@ -1,7 +1,7 @@
 ---
 layout: step
 title: Config
-permalink: "/docs/step-by-step/01-setup/"
+permalink: "/docs/step-by-step/01-config/"
 menu_name: Step by Step Tutorial
 position: 1
 ---
